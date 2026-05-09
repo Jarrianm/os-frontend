@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
 export const useCartStore = defineStore('cart', () => {
@@ -9,8 +9,8 @@ export const useCartStore = defineStore('cart', () => {
   }
 
   function removeItem(productId) {
-    items.value = items.value.filter(item => item.id !== productId)
+    items.value = items.value.filter((item) => item.id !== productId)
   }
 
-  return { items }
+  return { items, addItem, removeItem }
 })

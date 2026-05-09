@@ -1,42 +1,42 @@
 import { defineConfig, globalIgnores } from 'eslint/config'
-import globals from 'globals'
 import js from '@eslint/js'
+import globals from 'globals'
 import pluginVue from 'eslint-plugin-vue'
-import pluginPlaywright from 'eslint-plugin-playwright'
-import pluginVitest from '@vitest/eslint-plugin'
-import pluginOxlint from 'eslint-plugin-oxlint'
-import skipFormatting from 'eslint-config-prettier/flat'
+import json from '@eslint/json'
+import markdown from '@eslint/markdown'
+import css from '@eslint/css'
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 
 export default defineConfig([
+  globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**', 'package-lock.json']),
   {
-    name: 'app/files-to-lint',
-    files: ['**/*.{vue,js,mjs,jsx}'],
+    files: ['**/*.{js,mjs,cjs,vue}'],
+    plugins: { js },
+    extends: ['js/recommended'],
+    languageOptions: { globals: globals.browser },
   },
-
-  globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
-
+  ...pluginVue.configs['flat/recommended'].map((config) =>
+    config.files ? config : { ...config, files: ['**/*.vue'] },
+  ),
+  { files: ['**/*.json'], plugins: { json }, language: 'json/json', extends: ['json/recommended'] },
   {
-    languageOptions: {
-      globals: {
-        ...globals.browser,
-      },
-    },
+    files: ['**/*.jsonc'],
+    plugins: { json },
+    language: 'json/jsonc',
+    extends: ['json/recommended'],
   },
-
-  js.configs.recommended,
-  ...pluginVue.configs['flat/essential'],
-
   {
-    ...pluginPlaywright.configs['flat/recommended'],
-    files: ['e2e/**/*.{test,spec}.{js,ts,jsx,tsx}'],
+    files: ['**/*.json5'],
+    plugins: { json },
+    language: 'json/json5',
+    extends: ['json/recommended'],
   },
-
   {
-    ...pluginVitest.configs.recommended,
-    files: ['src/**/__tests__/*'],
+    files: ['**/*.md'],
+    plugins: { markdown },
+    language: 'markdown/commonmark',
+    extends: ['markdown/recommended'],
   },
-
-  ...pluginOxlint.buildFromOxlintConfigFile('.oxlintrc.json'),
-
-  skipFormatting,
+  { files: ['**/*.css'], plugins: { css }, language: 'css/css', extends: ['css/recommended'] },
+  eslintPluginPrettierRecommended,
 ])
