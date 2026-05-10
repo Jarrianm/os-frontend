@@ -31,8 +31,11 @@ jobs:
         if: steps.cache-restore.outputs.cache-hit != 'true'
         run: npm ci --ignore-scripts
 
-      - name: Install PLaywright browsers
-        run: npx playwright install
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Build
+        run: npm run build
 
       - name: Playwright Tests
         run: npm run test:e2e
