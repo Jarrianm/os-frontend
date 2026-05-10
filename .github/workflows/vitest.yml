@@ -1,4 +1,4 @@
-name: Vitest CI
+name: Vitest
 
 on:
     pull_request:

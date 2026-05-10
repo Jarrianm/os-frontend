@@ -1,4 +1,4 @@
-name: Playwright CI
+name: Playwright
 
 on:
     pull_request:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   playwright:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -30,6 +30,9 @@ jobs:
       - name: Install dependencies
         if: steps.cache-restore.outputs.cache-hit != 'true'
         run: npm ci --ignore-scripts
+
+      - name: Install PLaywright browsers
+        run: npx playwright install
 
       - name: Playwright Tests
         run: npm run test:e2e
