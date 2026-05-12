@@ -17,10 +17,11 @@ const toggleModal = () => {
 
 <template>
   <div class="col">
-    <div class="card" data-bs-theme="dark" @click="toggleModal">
+    <div class="card border-0" data-bs-theme="dark" @click="toggleModal">
       <img :src="product.images[0]" class="card-img-top" :alt="product.title" />
-      <div class="card-body">
-        <h5 class="card-title">{{ product.title }}</h5>
+      <div class="card-body d-flex justify-content-between align-items-center">
+        <h5 class="card-title mb-0">{{ product.title }}</h5>
+        <h4 class="mb-0">${{ product.price }}</h4>
       </div>
     </div>
   </div>
