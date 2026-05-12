@@ -1,4 +1,6 @@
 <script setup>
+import AddIcon from '@/assets/svgs/add.svg?component'
+
 defineProps({
   product: {
     type: Object,
@@ -60,7 +62,7 @@ const emit = defineEmits(['close'])
                   v-for="size in product.sizes"
                   :key="size.size"
                   type="button"
-                  class="btn btn-outline-light flex-fill"
+                  class="btn btn-outline-secondary flex-fill"
                 >
                   {{ size.size }}
                 </button>
@@ -71,7 +73,9 @@ const emit = defineEmits(['close'])
               v-else
               class="modal-footer border-0 d-flex justify-content-center align-items-center position-relative"
             >
-              <button type="button" class="btn btn-outline-secondary btn-lg">+</button>
+              <button type="button" class="btn btn-lg">
+                <AddIcon />
+              </button>
               <h4 class="mb-0 position-absolute end-0 me-3">${{ product.price }}</h4>
             </div>
           </div>
@@ -89,5 +93,9 @@ const emit = defineEmits(['close'])
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+button:hover svg {
+  fill: #adb5bd;
 }
 </style>
