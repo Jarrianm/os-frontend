@@ -1,3 +1,6 @@
+<script setup>
+import ProductsContainer from '@/components/ProductsContainer.vue'
+</script>
 <template>
-  <div></div>
+  <div><ProductsContainer category="Shoes" /></div>
 </template>

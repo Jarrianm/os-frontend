@@ -3,7 +3,5 @@ import ProductsContainer from '@/components/ProductsContainer.vue'
 </script>
 
 <template>
-  <main>
-    <ProductsContainer />
-  </main>
+  <div><ProductsContainer category="Electronics" /></div>
 </template>
