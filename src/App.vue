@@ -26,7 +26,6 @@ import { RouterLink, RouterView } from 'vue-router'
               <RouterLink class="nav-link" to="/shoes">Shoes</RouterLink>
               <RouterLink class="nav-link" to="/furniture">Furniture</RouterLink>
               <RouterLink class="nav-link" to="/electronics">Electronics</RouterLink>
-
               <RouterLink class="nav-link" to="/misc">Misc</RouterLink>
             </div>
           </div>
