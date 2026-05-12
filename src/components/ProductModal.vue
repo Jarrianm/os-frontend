@@ -62,7 +62,7 @@ const emit = defineEmits(['close'])
                   v-for="size in product.sizes"
                   :key="size.size"
                   type="button"
-                  class="btn btn-outline-secondary flex-fill"
+                  class="btn btn-outline-secondary flex-fill size-btn"
                 >
                   {{ size.size }}
                 </button>
